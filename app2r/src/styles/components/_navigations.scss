@@ -1,0 +1,51 @@
+
+//La barre de navigation
+.navigation{
+    
+    font-size: 18px;
+    font-weight: 600;
+  
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 5%;
+    left: 16%;
+    // height: 550px;
+    width: 100%;
+
+    //padding: 50px 35px;
+    text-align: center;
+    padding-bottom: 16px;
+    line-height: 2;
+    display: inline-block;
+    margin: 0 10px;
+    transition: color .3s;
+    padding: 0 15px;
+    max-width: 1080px;
+    max-height: 900px;
+    margin-left: 34%;
+    margin-right: auto;
+    
+    
+//Liens hyper text
+    a{
+        font-family: 'Poppins',sans-serif;
+        color:rgb(67, 107, 126);
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 12px;
+        transition: color .3s;
+    }
+
+    a:hover{
+        color: rgb(255, 254, 254);
+    }
+    
+    .picture{
+        width: 67px;
+        height: 62px;
+        position: absolute;
+        left: 3px;
+    }
+      
+}
+
