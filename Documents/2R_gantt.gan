@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="2R_gantt" company="" webLink="http://" view-date="2021-05-01" view-index="0" gantt-divider-location="634" resource-divider-location="300" version="2.8.11" locale="fr">
+    <description/>
+    <view zooming-state="default:11" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="449" order="0"/>
+        <field id="tpd4" name="Date de début" width="90" order="1"/>
+        <field id="tpd5" name="Date de fin" width="76" order="2"/>
+        <option id="color.recent"><![CDATA[#ff0000]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+        <date year="2021" month="11" date="29" type="WORKING_DAY"><![CDATA[Remise du projet]]></date>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="2" name="JALONS PREVUS" color="#000000" meeting="false" start="2021-11-29" duration="365" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
+            <task id="0" name="Remise du projet" color="#ff0000" meeting="true" start="2021-11-29" duration="0" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true"/>
+            <task id="53" name="Fin du prototype du site" color="#ff0000" meeting="true" start="2022-02-20" duration="0" complete="0" thirdDate="2021-11-07" thirdDate-constraint="0" expand="true"/>
+            <task id="55" name="Fin du prototype de l'appli" color="#ff0000" meeting="true" start="2022-02-20" duration="0" complete="0" thirdDate="2021-11-07" thirdDate-constraint="0" expand="true"/>
+            <task id="39" name="Présentation du prototype" color="#ff0000" meeting="true" start="2022-02-28" duration="0" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true"/>
+            <task id="130" name="Fin du site" color="#8cb6ce" meeting="true" start="2022-11-15" duration="0" complete="0" thirdDate="2021-12-26" thirdDate-constraint="0" expand="true"/>
+            <task id="127" name="Envoi des livrables pour tests" color="#8cb6ce" meeting="true" start="2022-11-29" duration="0" complete="0" thirdDate="2021-12-26" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="43" name="FORMATIONS" meeting="false" start="2021-12-08" duration="52" complete="0" expand="true">
+            <task id="45" name="React" color="#8cb6ce" meeting="false" start="2021-12-08" duration="20" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true"/>
+            <task id="75" name="Processus connexion front / back" color="#8cb6ce" meeting="false" start="2022-01-10" duration="3" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true">
+                <depend id="76" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="80" name="Postman" color="#8cb6ce" meeting="false" start="2022-01-26" duration="3" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="3" name="DEVELOPPEMENT" meeting="false" start="2021-12-08" duration="285" complete="0" expand="true">
+            <task id="118" name="Premier nettoyage du code" color="#8cb6ce" meeting="false" start="2022-02-19" duration="1" complete="0" thirdDate="2022-01-25" thirdDate-constraint="0" expand="true"/>
+            <task id="28" name="Front" color="#000000" meeting="false" start="2021-12-08" duration="285" complete="0" thirdDate="2021-12-08" thirdDate-constraint="0" expand="true">
+                <task id="137" name="Prototype" color="#8cb6ce" meeting="false" start="2021-12-08" duration="75" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                    <task id="31" name="Maquettage design" color="#8cb6ce" meeting="false" start="2021-12-08" duration="10" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
+                        <depend id="26" type="2" difference="0" hardness="Strong"/>
+                        <depend id="58" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="58" name="Page de connexion utilisateur" color="#8cb6ce" meeting="false" start="2021-12-18" duration="4" complete="0" thirdDate="2021-12-13" thirdDate-constraint="0" expand="true">
+                        <depend id="68" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="65" name="Page de contact" color="#8cb6ce" meeting="false" start="2022-01-16" duration="2" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true"/>
+                    <task id="66" name="Page de création de ressource" color="#8cb6ce" meeting="false" start="2022-01-06" duration="46" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true">
+                        <depend id="158" type="2" difference="0" hardness="Strong"/>
+                    </task>
+                    <task id="67" name="Page d'accueil" color="#8cb6ce" meeting="false" start="2022-01-27" duration="21" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true"/>
+                    <task id="68" name="Mise en forme" color="#8cb6ce" meeting="false" start="2021-12-22" duration="58" complete="0" thirdDate="2021-12-22" thirdDate-constraint="0" expand="true"/>
+                    <task id="122" name="Application mobile (power apps + sharepoint)" color="#8cb6ce" meeting="false" start="2022-02-12" duration="7" complete="0" thirdDate="2021-11-28" thirdDate-constraint="0" expand="true"/>
+                </task>
+                <task id="139" name="Site final" meeting="false" start="2022-01-06" duration="256" complete="0" expand="true">
+                    <task id="141" name="Ressources" meeting="false" start="2022-01-27" duration="54" complete="0" expand="false">
+                        <task id="142" name="Lister toutes les ressources" color="#8cb6ce" meeting="false" start="2022-01-27" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="143" name="Trier les ressources" color="#8cb6ce" meeting="false" start="2022-03-07" duration="15" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="146" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="144" name="Afficher le contenu des ressource" color="#8cb6ce" meeting="false" start="2022-01-27" duration="22" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                    <task id="145" name="Référentiel de ressource" meeting="false" start="2022-01-06" duration="80" complete="0" expand="false">
+                        <task id="146" name="Lister et trier en back-office" color="#8cb6ce" meeting="false" start="2022-03-22" duration="5" complete="0" thirdDate="2022-03-22" thirdDate-constraint="0" expand="true"/>
+                        <task id="148" name="Ajouter une ressource" color="#8cb6ce" meeting="false" start="2022-01-06" duration="42" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="149" name="Editer une ressource" color="#8cb6ce" meeting="false" start="2022-03-07" duration="3" complete="0" thirdDate="2022-02-17" thirdDate-constraint="0" expand="true">
+                            <depend id="150" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="150" name="Supprimer / Suspendre une ressource" color="#8cb6ce" meeting="false" start="2022-03-10" duration="3" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="151" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="151" name="Ajouter, éditer, supprimer une catégorie" color="#8cb6ce" meeting="false" start="2022-03-13" duration="3" complete="0" thirdDate="2022-02-23" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                    <task id="154" name="Comptes" meeting="false" start="2022-03-16" duration="10" complete="0" expand="false">
+                        <task id="155" name="Créer un compte" color="#8cb6ce" meeting="false" start="2022-03-16" duration="3" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="156" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="156" name="Modifier, supprimer, suspendre un compte" color="#8cb6ce" meeting="false" start="2022-03-19" duration="7" complete="0" thirdDate="2022-03-19" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                    <task id="157" name="Création de ressource" meeting="false" start="2022-02-21" duration="31" complete="0" expand="false">
+                        <task id="158" name="Création, édition d'une ressource" color="#8cb6ce" meeting="false" start="2022-02-21" duration="3" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="159" type="2" difference="0" hardness="Strong"/>
+                            <depend id="162" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="159" name="Validation d'une ressource" color="#8cb6ce" meeting="false" start="2022-02-24" duration="7" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="160" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="160" name="Partage d'une publication" color="#8cb6ce" meeting="false" start="2022-03-03" duration="21" complete="0" thirdDate="2022-03-03" thirdDate-constraint="0" expand="true"/>
+                    </task>
+                    <task id="161" name="Echanges" meeting="false" start="2022-02-24" duration="16" complete="0" expand="false">
+                        <task id="162" name="Ajout d'un commentaire" color="#8cb6ce" meeting="false" start="2022-02-24" duration="15" complete="0" thirdDate="2022-03-24" thirdDate-constraint="0" expand="true"/>
+                        <task id="163" name="Modération des commentaires" color="#8cb6ce" meeting="false" start="2022-03-09" duration="3" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="164" name="Réponse à un commentaire" color="#8cb6ce" meeting="false" start="2022-03-09" duration="3" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="166" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                    </task>
+                    <task id="165" name="Progression" meeting="false" start="2022-03-12" duration="127" complete="0" expand="false">
+                        <task id="166" name="Gestion des favoris" color="#8cb6ce" meeting="false" start="2022-03-12" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="167" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="167" name="Gestion de l'exploitation d'une ressource" color="#8cb6ce" meeting="false" start="2022-04-02" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="168" name="Mise de côté une ressource" color="#8cb6ce" meeting="false" start="2022-04-14" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="169" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="169" name="Affichage du tableau de bord" color="#8cb6ce" meeting="false" start="2022-05-05" duration="14" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="171" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="171" name="Démarrage d'une ressource de type activité/jeu" color="#8cb6ce" meeting="false" start="2022-05-19" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="172" name="Invitation à une ressource" color="#8cb6ce" meeting="false" start="2022-06-06" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                        <task id="173" name="Tchat de ressource" color="#8cb6ce" meeting="false" start="2022-06-26" duration="21" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true">
+                            <depend id="175" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                    </task>
+                    <task id="174" name="Statistiques" meeting="false" start="2022-07-17" duration="63" complete="0" expand="false">
+                        <task id="175" name="Affichage" color="#8cb6ce" meeting="false" start="2022-07-17" duration="21" complete="0" thirdDate="2022-07-17" thirdDate-constraint="0" expand="true">
+                            <depend id="176" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="176" name="Tri" color="#8cb6ce" meeting="false" start="2022-08-07" duration="21" complete="0" thirdDate="2022-08-07" thirdDate-constraint="0" expand="true">
+                            <depend id="177" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                        <task id="177" name="Export" color="#8cb6ce" meeting="false" start="2022-08-28" duration="21" complete="0" thirdDate="2022-08-28" thirdDate-constraint="0" expand="true">
+                            <depend id="178" type="2" difference="0" hardness="Strong"/>
+                            <depend id="179" type="2" difference="0" hardness="Strong"/>
+                        </task>
+                    </task>
+                    <task id="178" name="Page de présentation de l'application" color="#8cb6ce" meeting="false" start="2022-09-18" duration="1" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                    <task id="179" name="Page de support sur l'application" color="#8cb6ce" meeting="false" start="2022-09-18" duration="1" complete="0" thirdDate="2021-11-01" thirdDate-constraint="0" expand="true"/>
+                </task>
+            </task>
+            <task id="29" name="Back" color="#000000" meeting="false" start="2022-01-02" duration="42" complete="0" thirdDate="2021-12-08" thirdDate-constraint="0" expand="true">
+                <task id="103" name="Mise en place de la BDD" meeting="false" start="2022-01-02" duration="2" complete="0" expand="true">
+                    <depend id="34" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="34" name="Connexion à la base de données" color="#8cb6ce" meeting="false" start="2022-01-04" duration="1" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true">
+                    <depend id="109" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="76" name="API" color="#8cb6ce" meeting="false" start="2022-01-13" duration="31" complete="0" thirdDate="2021-12-06" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="83" name="Outils" meeting="false" start="2022-01-16" duration="30" complete="0" expand="true">
+                <task id="85" name="Création de la boite mail avec MailJS" color="#8cb6ce" meeting="false" start="2022-01-16" duration="1" complete="0" thirdDate="2021-12-29" thirdDate-constraint="0" expand="true"/>
+                <task id="112" name="Postman" color="#8cb6ce" meeting="false" start="2022-02-08" duration="7" complete="0" thirdDate="2021-12-30" thirdDate-constraint="0" expand="true"/>
+            </task>
+        </task>
+        <task id="108" name="TESTS" meeting="false" start="2022-01-05" duration="41" complete="0" expand="true">
+            <task id="109" name="Tests liés à la base de données" color="#8cb6ce" meeting="false" start="2022-01-05" duration="4" complete="0" thirdDate="2021-12-30" thirdDate-constraint="0" expand="true"/>
+            <task id="110" name="Tests de l'API" color="#8cb6ce" meeting="false" start="2022-02-08" duration="7" complete="0" thirdDate="2022-01-02" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="25" name="DOCUMENTS" meeting="false" start="2021-11-29" duration="61" complete="0" expand="true">
+            <task id="33" name="Mise en place du cahier des charges" color="#8cb6ce" meeting="false" start="2021-11-29" duration="8" complete="0" thirdDate="2021-11-24" thirdDate-constraint="0" expand="true"/>
+            <task id="26" name="Mise en place du diagramme de Gantt" color="#8cb6ce" meeting="false" start="2021-12-18" duration="4" complete="0" thirdDate="2021-11-29" thirdDate-constraint="0" expand="true"/>
+            <task id="61" name="Diagrammes UML" color="#8cb6ce" meeting="false" start="2021-11-30" duration="9" complete="0" thirdDate="2021-11-07" thirdDate-constraint="0" expand="true"/>
+            <task id="121" name="Revue des documents" color="#8cb6ce" meeting="false" start="2022-01-24" duration="5" complete="0" thirdDate="2022-01-02" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="1" name="Hugo RODRIGUES" function="Default:1" contacts="" phone=""/>
+        <resource id="3" name="Adel OULD OUELHADJ" function="SoftwareDevelopment:9" contacts="" phone=""/>
+        <resource id="2" name="Alexandre LUIGGI" function="SoftwareDevelopment:2" contacts="" phone=""/>
+        <resource id="0" name="Théo ZATTERA" function="SoftwareDevelopment:2" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="33" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="31" resource-id="3" function="SoftwareDevelopment:9" responsible="true" load="100.0"/>
+        <allocation task-id="26" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+        <allocation task-id="29" resource-id="0" function="SoftwareDevelopment:2" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
