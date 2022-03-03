@@ -1,0 +1,21 @@
+RewriteEngine On # Activer le module Rewrite
+
+RewriteRule ^categorie/?$ categorie.php [NC,L] 
+# Lire un id 
+RewriteRule ^[^/]+/(\d+)$ categorie.php?id=$1 
+
+RewriteRule ^acces/?$ acces.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ acces.php?id=$1
+
+RewriteRule ^commentaire/?$ commentaire.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ commentaire.php?id=$1
+
+RewriteRule ^ressource/?$ ressource.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ ressource.php?id=$1
+
+RewriteRule ^user/?$ user.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ user.php?id=$1
+
+RewriteRule ^all/?$ all.php [NC,L]
+RewriteRule ^[^/]+/(\d+)$ all.php?id=$1
+
