@@ -21,7 +21,7 @@
             break;
     }
     function getCategories($id=0){
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r"); // Connexion à la base de données (en dur temporairement)
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r"); // Connexion à la base de données (en dur temporairement)
         $query = "SELECT * FROM categorie";
         if ($id != 0) {
             $query .= " WHERE id=$id LIMIT 1"; // Si une seule catégorie est demandée, on recherche par id
@@ -36,7 +36,7 @@
     }
     function postCategorie(){
         $categorie = $_POST["categorie"]; // Récupération de l'envoi du formulaire
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $query = "INSERT INTO categorie (label) VALUES ('$categorie')";
         $response;
         if(mysqli_query($conn, $query)){

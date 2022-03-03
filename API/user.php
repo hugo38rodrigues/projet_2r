@@ -24,9 +24,9 @@
             break;
     }
     function getUser($id=0, $login=null, $pss=null){
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $query = "SELECT * FROM user";
-        $response;
+        // $response=array();
         if ($login != null && $pss != null) {
             $query .= " WHERE login='$login' AND psswrd='$pss' LIMIT 1";
             if (mysqli_query($conn, $query)) {
@@ -68,7 +68,7 @@
         $login = $_POST["login"];
         $password = $_POST["password"];
         $niveauAcces = 1;
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $query = "INSERT INTO user (nom, prenom, date_naiss, actif, login, psswrd, niveau_acces) VALUES ('$nom', '$prenom', '$dateNaiss', $actif, '$login', '$password', $niveauAcces)";
         $response;
         if(mysqli_query($conn, $query)){

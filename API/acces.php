@@ -21,7 +21,7 @@
             break;
     }
     function getAcces($id=0){
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $query = "SELECT * FROM acces";
         if ($id != 0) {
             $query .= " WHERE id=$id LIMIT 1";

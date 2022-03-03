@@ -21,7 +21,7 @@
             break;
     }
     function getCommentaire($id=0){
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $query = "SELECT * FROM commentaire";
         if ($id != 0) {
             $query .= " WHERE id=$id LIMIT 1";
@@ -47,7 +47,7 @@
             $ref = $_POST["commentaire"];
             $query = "INSERT INTO commentaire (texte_commentaire, commentaire, user) VALUES ('$texteComm', $ref, $user)";
         }
-        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
         $response;
         if(mysqli_query($conn, $query)){
             $response=array(
