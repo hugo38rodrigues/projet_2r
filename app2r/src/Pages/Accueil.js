@@ -11,7 +11,7 @@ const Accueil = () => {
     return (
         <div className='acceuil'>
             <Navigation />
-            {/* <AffichageRessource/> */}
+            <AffichageRessource/>
 
         </div>
     );
