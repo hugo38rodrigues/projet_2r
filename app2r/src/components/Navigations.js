@@ -17,10 +17,10 @@ const Navigation = () => {
             <NavLink  exact to="/Contacts">
                 Contact
             </NavLink>
-{/*             
+            
             <NavLink  exact to="/Connexion">
                 Connexion
-            </NavLink> */}
+            </NavLink> 
         </div>
     );
 };
