@@ -52,8 +52,8 @@ const Ressources = () => {
         event.preventDefault();
 
         axios
-            .post('http://2r/API/ressource',post ) // ! url apache2 théo
-            // .post('http://localhost/2r/API/ressource',post ) // ! url apache2 maison
+            // .post('http://2r/API/ressource',post ) // ! url apache2 théo
+            .post('http://localhost/2r/API/ressource',post ) // ! url apache2 maison
             .then(res => {
 
                 console.log("Status",res.status);
