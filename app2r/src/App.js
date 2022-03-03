@@ -4,7 +4,7 @@ import Accueil from './Pages/Accueil';
 import NotFound from './Pages/NotFound';
 import Ressources from './Pages/Ressources';
 import Contact from './Pages/Contacts';
-//import Connexion from './Pages/Connexion';
+import Connexion from './Pages/Connexion';
 
 const App = () => {
     return (
@@ -13,7 +13,7 @@ const App = () => {
                 <Route path="/" exact element={<Accueil/>}/>
                 <Route path="/Contacts" element={<Contact/>}/>
                 <Route path="/Ressources" element={<Ressources/>}/>
-                {/* <Route path="/Connexion" element= {<Connexion />}/>   */}{/*//! Code pas écrit + API pas écrite pour enregistrée des users   */ }
+                <Route path="/Connexion" element= {<Connexion />}/>  {/*//! Code pas écrit + API pas écrite pour enregistrée des users   */ }
                 <Route path="*" element= {<NotFound />}/>
                 
             </Routes>
