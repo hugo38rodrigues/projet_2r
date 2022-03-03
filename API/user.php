@@ -26,7 +26,7 @@
     function getUser($id=0, $login=null, $pss=null){
         $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
         $query = "SELECT * FROM user";
-        
+        $response;
         if ($login != null && $pss != null) {
             $query .= " WHERE login='$login' AND psswrd='$pss' LIMIT 1";
             if (mysqli_query($conn, $query)) {
