@@ -1,5 +1,5 @@
 <?php
-    // header("Access-Control-Allow-Origin: http://localhost:3000/");
+    header("Access-Control-Allow-Origin: http://localhost:3000/");
     // header("Access-Control-Allow-Origin: *");
 
     $request_method = $_SERVER["REQUEST_METHOD"];
@@ -24,7 +24,7 @@
             break;
     }
     function getUser($id=0, $login=null, $pss=null){
-        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
         $query = "SELECT * FROM user";
         $response;
         if ($login != null && $pss != null) {
@@ -68,7 +68,7 @@
         $login = $_POST["login"];
         $password = $_POST["password"];
         $niveauAcces = 1;
-        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
         $query = "INSERT INTO user (nom, prenom, date_naiss, actif, login, psswrd, niveau_acces) VALUES ('$nom', '$prenom', '$dateNaiss', $actif, '$login', '$password', $niveauAcces)";
         $response;
         if(mysqli_query($conn, $query)){
