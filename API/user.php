@@ -1,5 +1,5 @@
 <?php
-    // header("Access-Control-Allow-Origin: http://localhost:3000/");
+    header("Access-Control-Allow-Origin: http://localhost:3000/");
     // header("Access-Control-Allow-Origin: *");
 
     $request_method = $_SERVER["REQUEST_METHOD"];
