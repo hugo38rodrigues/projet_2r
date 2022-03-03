@@ -28,7 +28,7 @@
             break;
     }
     function getRessource($id=0){
-        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
         $query = "SELECT titre, date_crea, texte, media, label AS categorie, concat(nom, ' ', prenom) AS createur, acces FROM ressource, categorie, user, contenu WHERE ressource.categorie = categorie.id AND ressource.contenu = contenu.id AND ressource.createur = user.id";
         if ($id != 0) {
             $query .= " AND ressource.id=$id";
@@ -45,7 +45,7 @@
     function postRessource(){
         $data = json_decode(file_get_contents('php://input'), true);
         print_r ($data);
-        $conn = mysqli_connect("localhost", "root", "", "cesi_projet2r");
+        $conn = mysqli_connect("localhost", "root", "avvw9uMTzOlZ6Cbb", "cesi_projet2r");
         $titre = $data["titre"];
         $date_crea = $data["date_crea"];
         $texte = $data["texte"];
