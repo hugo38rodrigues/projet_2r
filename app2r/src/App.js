@@ -13,7 +13,7 @@ const App = () => {
                 <Route path="/" exact element={<Accueil/>}/>
                 <Route path="/Contacts" element={<Contact/>}/>
                 <Route path="/Ressources" element={<Ressources/>}/>
-                <Route path="/Connexion" element= {<Connexion />}/>  {/*//! Code pas écrit + API pas écrite pour enregistrée des users   */ }
+                <Route path="/Connexion" element= {<Connexion />}/>
                 <Route path="*" element= {<NotFound />}/>
                 
             </Routes>
