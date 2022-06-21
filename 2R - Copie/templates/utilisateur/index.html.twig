@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'utilisateur.index.pagetitle'|trans({},'utilisateur') }}{% endblock %}
+{% block page_subtitle %}{{ 'utilisateur.index.subtitle'|trans({},'utilisateur') }}{% endblock %}
+
+{% block page_content %}
+
+    {% if modal is defined and modal is not empty %}
+        {{ include('utilisateur/_modal.html.twig', { modal: modal } ) }}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+            {% block box_title %}{{ 'utilisateur.index.boxtitle'|trans({},'utilisateur') }}{% endblock %}
+                {% block box_tools %}
+                    <div class="pull-right ">
+                        <button class="btn btn-success " data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-plus-square"></i> {{ 'utilisateur.index.btn.ajouter'|trans({},'utilisateur') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_body %}
+                    <table id="utilisateur-datatable" class="table table-striped stripe table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'utilisateur.id'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.droit'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.nom'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.prenom'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.dateNaiss'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.actif'|trans({},'utilisateur') }}</th>
+                            <th>{{ 'utilisateur.index.action'|trans({},'utilisateur')|raw }}</th>
+                        </tr>
+                        </thead>
+
+                        {% for utilisateur in utilisateurs %}
+                        <tr>
+                            <td>{{ utilisateur.id }}</td>
+                            <td>{{ utilisateur.droit }}</td>
+                            <td>{{ utilisateur.nom }}</td>
+                            <td>{{ utilisateur.prenom }}</td>
+                            <td>{{ utilisateur.dateNaiss ? utilisateur.dateNaiss|date('Y-m-d') : '' }}</td>
+                            <td>{{ utilisateur.actif ? 'Yes' : 'No' }}</td>
+                            <td><a class="btn btn-xs btn-primary" href="/utilisateur/{{ utilisateur.id }}"><i class="fa fa-search"></i> {{ 'utilisateur.index.btn.voir'|trans({},'utilisateur') }}</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                {% endblock %}
+                {% block box_footer %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#utilisateur-datatable').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": true,
+            });
+        });
+    </script>
+{% endblock %}

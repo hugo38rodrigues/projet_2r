@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'stat_recherche.index.pagetitle'|trans({},'stat_recherche') }}{% endblock %}
+{% block page_subtitle %}{{ 'stat_recherche.index.subtitle'|trans({},'stat_recherche') }}{% endblock %}
+
+{% block page_content %}
+
+
+    <a href="/stat/recherche/"> <button id="btn-PageActuel" class="OngletStat btn btn-primary">Statistique de recherche</button></a>
+    <a href="/ressource/statConsultation"> <button  class="OngletStat btn btn-primary">Statistique de consultation</button></a>
+    <a href="/ressource/statCreaExploit"> <button class="OngletStat btn btn-primary">Statistique de création/exploitation</button></a>
+
+
+    <style>
+
+        #btn-PageActuel{
+            border-left: 8px solid #7ecffe;
+        }
+
+        .OngletStat{
+            height: 2.5em;
+            width: min-content;
+            margin-left: 0px;
+            border-radius: 0px;
+            font-size: 16px;
+            border: 0px;
+
+        }
+
+    </style>
+
+    {% if modal is defined and modal is not empty %}
+        {{ include('stat_recherche/_modal.html.twig', { modal: modal } ) }}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+            {% block box_title %}{{ 'stat_recherche.index.boxtitle'|trans({},'stat_recherche') }}{% endblock %}
+                {% block box_tools %}
+
+                {% endblock %}
+                {% block box_body %}
+                    <table id="stat_recherche-datatable" class="table table-striped stripe table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'stat_recherche.recherche'|trans({},'stat_recherche') }}</th>
+                            <th>{{ 'stat_recherche.nbrRecherche'|trans({},'stat_recherche') }}</th>
+                            <th>{{ 'stat_recherche.index.action'|trans({},'stat_recherche')|raw }}</th>
+                        </tr>
+                        </thead>
+
+                        {% for stat_recherche in stat_recherches %}
+                        <tr>
+                            <td>{{ stat_recherche.recherche }}</td>
+                            <td>{{ stat_recherche.nbrRecherche }}</td>
+                            <td><a class="btn btn-xs btn-primary" href="/stat/recherche/{{ stat_recherche.id }}"><i class="fa fa-search"></i> {{ 'stat_recherche.index.btn.voir'|trans({},'stat_recherche') }}</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                {% endblock %}
+                {% block box_footer %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#stat_recherche-datatable').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": true,
+                "order": [],
+                dom: 'l<"pull-left"B>frtip',
+                buttons: [
+                    {
+                        text: 'Excel',
+                        className: 'btn btn-s btn-primary',
+                        extend: 'excelHtml5',
+                        title: 'statistique-Processus',
+                    },
+                    {
+                        text: 'Pdf',
+                        className: 'btn btn-s btn-primary',
+                        extend: 'pdfHtml5',
+                        title: 'statistique-Processus',
+                    }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

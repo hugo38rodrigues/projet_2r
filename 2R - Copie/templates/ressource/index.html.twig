@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'ressource.index.pagetitle'|trans({},'ressource') }}{% endblock %}
+{% block page_subtitle %}{{ 'ressource.index.subtitle'|trans({},'ressource') }}{% endblock %}
+
+{% block page_content %}
+
+    {% if modal is defined and modal is not empty %}
+        {{ include('ressource/_modal.html.twig', { modal: modal } ) }}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% block box_title %}{{ 'ressource.index.boxtitle'|trans({},'ressource') }}{% endblock %}
+                {% block box_tools %}
+                    <div class="pull-right ">
+                        <button class="btn btn-success " data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-plus-square"></i> {{ 'ressource.index.btn.ajouter'|trans({},'ressource') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_body %}
+                    {#
+                    <style>.nostyle table, caption, tbody, tfoot, thead, tr, th, td {
+                            margin: 0;
+                            padding: 0;
+                            border: 0;
+                            outline: 0;
+                            font-size: 100%;
+                            vertical-align: baseline;
+                            background: transparent;
+                        }</style>#}
+                    <table id="ressource-datatable" class="table table-striped stripe table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'ressource.id'|trans({},'ressource') }}</th>
+                            <th>{{ 'ressource.titre'|trans({},'ressource') }}</th>
+                            <th>{{ 'ressource.resume'|trans({},'ressource') }}</th>
+                            <th>{{ 'ressource.dateCrea'|trans({},'ressource') }}</th>
+                            <th>{{ 'ressource.index.action'|trans({},'ressource')|raw }}</th>
+                        </tr>
+                        </thead>
+
+                        {% for ressource in ressources %}
+                            <tr>
+                                <td>{{ ressource.id }}</td>
+                                <td>{{ ressource.titre }}</td>
+                                <td>{{ ressource.resume }}</td>
+                                <td>{{ ressource.dateCrea ? ressource.dateCrea|date('Y-m-d') : '' }}</td>
+                                <td><a class="btn btn-xs btn-primary" href="/ressource/{{ ressource.id }}"><i class="fa fa-search"></i> {{ 'ressource.index.btn.voir'|trans({},'ressource') }}</a></td>
+                            </tr>
+                        {% endfor %}
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                {% endblock %}
+                {% block box_footer %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#ressource-datatable').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": true,
+            });
+        });
+    </script>
+{% endblock %}

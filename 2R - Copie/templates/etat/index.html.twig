@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'etat.index.pagetitle'|trans({},'etat') }}{% endblock %}
+{% block page_subtitle %}{{ 'etat.index.subtitle'|trans({},'etat') }}{% endblock %}
+
+{% block page_content %}
+
+    {% if modal is defined and modal is not empty %}
+        {{ include('etat/_modal.html.twig', { modal: modal } ) }}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+            {% block box_title %}{{ 'etat.index.boxtitle'|trans({},'etat') }}{% endblock %}
+                {% block box_tools %}
+                    <div class="pull-right ">
+                        <button class="btn btn-success " data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-plus-square"></i> {{ 'etat.index.btn.ajouter'|trans({},'etat') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_body %}
+                    <table id="etat-datatable" class="table table-striped stripe table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'etat.id'|trans({},'etat') }}</th>
+                            <th>{{ 'etat.libelle'|trans({},'etat') }}</th>
+                            <th>{{ 'etat.index.action'|trans({},'etat')|raw }}</th>
+                        </tr>
+                        </thead>
+
+                        {% for etat in etats %}
+                        <tr>
+                            <td>{{ etat.id }}</td>
+                            <td>{{ etat.libelle }}</td>
+                            <td><a class="btn btn-xs btn-primary" href="/etat/{{ etat.id }}"><i class="fa fa-search"></i> {{ 'etat.index.btn.voir'|trans({},'etat') }}</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                {% endblock %}
+                {% block box_footer %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#etat-datatable').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": true,
+            });
+        });
+    </script>
+{% endblock %}

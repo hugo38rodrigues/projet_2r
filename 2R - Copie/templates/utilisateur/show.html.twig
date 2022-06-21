@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'utilisateur.show.pagetitle'|trans({},'utilisateur') }}{% endblock %}
+{% block page_subtitle %}{{ 'utilisateur.show.subtitle'|trans({},'utilisateur') }}{% endblock %}
+
+{% block page_content %}
+    {% if modalEdit is defined and modalEdit is not empty %}
+        {{ include('utilisateur/_modal.html.twig', { modal: modalEdit } ) }}
+    {% endif %}
+
+    {{ generate_delete_modal('utilisateur','delete_utilisateur') }}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% block box_title %}{{ 'utilisateur.show.boxtitle'|trans({},'utilisateur') }}{% endblock %}
+                {% block box_body %}
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'utilisateur.id'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'utilisateur.droit'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.droit }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'utilisateur.nom'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'utilisateur.prenom'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.prenom }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'utilisateur.dateNaiss'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.dateNaiss ? utilisateur.dateNaiss|date('Y-m-d') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'utilisateur.actif'|trans({},'utilisateur') }}</th>
+                                <td>{{ utilisateur.actif ? 'Yes' : 'No' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right modal-footer">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-pen"></i> Editer</button>
+                        <button class="delete-entity btn btn-danger" data-id="{{ utilisateur.id }}" data-modal-name="utilisateur"><i class="fa fa-trash"></i> {{ 'utilisateur.show.btn.supprimer'|trans({},'utilisateur') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_footer %}
+                    <a href="{{ path('utilisateur_index') }}">{{ 'utilisateur.show.btn.retourliste'|trans({},'utilisateur') }}</a>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

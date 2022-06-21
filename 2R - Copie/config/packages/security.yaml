@@ -1,0 +1,35 @@
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        Cnam\AuthSrvSecBundle\User\User: plaintext
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        phpk:
+            id: authsrvsec.user_provider
+        # used to reload user from session & other features (e.g. switch_user)
+
+    firewalls:
+        dev:
+            # disables authentication for assets and the profiler, adapt it according to your needs
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/authsrvsec
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            guard:
+                authenticators:
+                    - authsrvsec.bouchon_authenticator
+                    - authsrvsec.srvsec_authenticator
+#                entry_point: authsrvsec.srvsec_authenticator
+                entry_point: authsrvsec.bouchon_authenticator
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }

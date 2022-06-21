@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'acces.index.pagetitle'|trans({},'acces') }}{% endblock %}
+{% block page_subtitle %}{{ 'acces.index.subtitle'|trans({},'acces') }}{% endblock %}
+
+{% block page_content %}
+
+    {% if modal is defined and modal is not empty %}
+        {{ include('acces/_modal.html.twig', { modal: modal } ) }}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+            {% block box_title %}{{ 'acces.index.boxtitle'|trans({},'acces') }}{% endblock %}
+                {% block box_tools %}
+                    <div class="pull-right ">
+                        <button class="btn btn-success " data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-plus-square"></i> {{ 'acces.index.btn.ajouter'|trans({},'acces') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_body %}
+                    <table id="acces-datatable" class="table table-striped stripe table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>{{ 'acces.id'|trans({},'acces') }}</th>
+                            <th>{{ 'acces.niveau'|trans({},'acces') }}</th>
+                            <th>{{ 'acces.index.action'|trans({},'acces')|raw }}</th>
+                        </tr>
+                        </thead>
+
+                        {% for acces in access %}
+                        <tr>
+                            <td>{{ acces.id }}</td>
+                            <td>{{ acces.niveau }}</td>
+                            <td><a class="btn btn-xs btn-primary" href="/acces/{{ acces.id }}"><i class="fa fa-search"></i> {{ 'acces.index.btn.voir'|trans({},'acces') }}</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tbody>
+                        </tbody>
+                    </table>
+                {% endblock %}
+                {% block box_footer %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#acces-datatable').DataTable({
+                "serverSide": false,
+                "processing": true,
+                "searching": true,
+            });
+        });
+    </script>
+{% endblock %}

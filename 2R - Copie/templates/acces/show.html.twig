@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'acces.show.pagetitle'|trans({},'acces') }}{% endblock %}
+{% block page_subtitle %}{{ 'acces.show.subtitle'|trans({},'acces') }}{% endblock %}
+
+{% block page_content %}
+    {% if modalEdit is defined and modalEdit is not empty %}
+        {{ include('acces/_modal.html.twig', { modal: modalEdit } ) }}
+    {% endif %}
+
+    {{ generate_delete_modal('acces','delete_acces') }}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% block box_title %}{{ 'acces.show.boxtitle'|trans({},'acces') }}{% endblock %}
+                {% block box_body %}
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'acces.id'|trans({},'acces') }}</th>
+                                <td>{{ acces.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'acces.niveau'|trans({},'acces') }}</th>
+                                <td>{{ acces.niveau }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right modal-footer">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-pen"></i> Editer</button>
+                        <button class="delete-entity btn btn-danger" data-id="{{ acces.id }}" data-modal-name="acces"><i class="fa fa-trash"></i> {{ 'acces.show.btn.supprimer'|trans({},'acces') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_footer %}
+                    <a href="{{ path('acces_index') }}">{{ 'acces.show.btn.retourliste'|trans({},'acces') }}</a>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

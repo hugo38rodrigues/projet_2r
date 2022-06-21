@@ -1,0 +1,357 @@
+{% extends 'baseReseau.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style.css') }}" />
+{% endblock %}
+
+{% block searchbar %}
+
+    <div class="search-bar">
+        {{ form_start(search) }}
+        <button class="right-side-button" @click="rightSide = !rightSide">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+        {{ form_end(search) }}
+    </div>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <title>Accueil</title>
+
+    <style>
+
+        .nostyle * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        #wrap
+        {
+            margin:50px auto 0 auto;
+            width:100%;
+            display:flex;
+            max-width:100%;
+            flex-direction: column;
+        }
+        .tile
+        {
+            padding: 2%;
+            width: 70%;
+            height:380px;
+            margin:10px 25px 30px 0px;
+            background-color: #151728;
+            display:flex;
+            flex-direction: column;
+            background-size:cover;
+            position:relative;
+            cursor:pointer;
+            transition: all 0.4s ease-out;
+            box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.44);
+            color:white;
+            overflow: hidden;
+            scrollbar-color: darkblue;
+            scrollbar-width: thin;
+            scrollbar-radius: 5px;
+        }
+        .tile .text
+        {
+            width: 100%;
+            position:absolute;
+            padding:30px;
+            height:calc(100% - 60px);
+        }
+        .tile h1
+        {
+            font-weight: 501;
+            margin:0;
+        }
+
+        .tile p
+        {
+            font-weight:300;
+            margin:20px 0 0 0;
+            line-height: 25px;
+        }
+
+        .tile:hover
+        {
+            z-index: 2;
+            overflow: auto;
+            overflow-x: hidden;
+            box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
+            transform:scale(1.07);
+        }
+
+        .fichier
+        {
+            z-index: 11;
+            position:absolute;
+            bottom:20px;
+            right:5px;
+            margin: 0 auto;
+            width:30px;
+            height:30px;
+            color:currentColor;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:space-around;
+        }
+
+        .fichier span
+        {
+            text-align: center;
+            margin-top: 5px;
+            background-color: white;
+            border-radius: 10%;
+            display:block;
+
+        }
+
+        .fichier span div
+        {
+            width: 0;
+            height: 0;
+        }
+
+        .fichier span:hover div
+        {
+            width: min-content;
+            height: min-content;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 1000px) {
+            #wrap {
+                flex-direction: column;
+                width:400px;
+            }
+        }
+        .files{
+            z-index: 10;
+        }
+
+        .login-box {
+            z-index: 15;
+            position: fixed;
+            margin-top: 23%;
+            left: 50%;
+            width: 400px;
+            padding: 0px 40px 40px 40px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(127,90,131,0.7);
+            background-image: linear-gradient(315deg, rgba(127,90,131,0.4) 0%, rgba(13,50,77,0.7) 74%);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0,0,0,.6);
+            border-radius: 10px;
+        }
+
+        .bouttonCrea{
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0,0,0,.6);
+            border-radius: 10px;
+            background-color: black;
+            padding: 5px;
+            margin-bottom: 13px;
+            border: 1px solid rgba(60,141,188,1);
+            transition:0.3s;
+        }
+        .bouttonCrea:hover{
+            color: Black;
+            background-color: rgba(60,141,188,1);
+        }
+        .tri{
+            position: relative;
+            width: 50%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .comm{
+            border-radius: 10px;
+            margin-top: 20px;
+            padding: 5px;
+            background-color: rgba(127,90,131,0.7);
+            background-image: linear-gradient(315deg, rgba(127,90,131,0.4) 0%, rgba(13,50,77,0.7) 74%);
+        }
+
+        .bouttonComm{
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0,0,0,.6);
+            border-radius: 10px;
+            background-color: black;
+            padding: 5px;
+            margin-bottom: 13px;
+            border: 1px solid rgba(60,141,188,1);
+            transition:0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        #commentaireForm{
+            display: none;
+        }
+
+    </style>
+
+    <div class="row">
+        <div class="col-md-12">
+            {% block box_body %}
+
+
+
+                <!-- .modal Refus Validation -->
+                <div style="display: none;"  id="MymodalFiltre">
+                    <div class="login-box">
+                        <button style="font-size: 30px" onclick=" document.getElementById('MymodalFiltre').style.display = 'none';">
+                            &times;
+                        </button>
+
+                        {{ form_start(formFiltre) }}
+
+                        <div class="user-box">
+                            {{ form_row(formFiltre.categorie) }}
+                        </div>
+                        <a href="#">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <button type="submit">Valider</button>
+                        </a>
+                        {{ form_end(formFiltre) }}
+                    </div>
+                </div>
+
+                    <!-- .modal Refus Validation -->
+                    <div style="display: none;"  id="MymodalRefus">
+                        <div class="login-box">
+                            <button style="font-size: 30px" onclick=" document.getElementById('MymodalRefus').style.display = 'none';">
+                                &times;
+                            </button>
+
+                            {{ form_start(formCreate) }}
+
+
+                            <h2>Ressource</h2>
+                            <div class="user-box">
+                                {{ form_row(formCreate.titre) }}
+                            </div>
+                            <div class="user-box">
+                                {{ form_row(formCreate.resume) }}
+                            </div>
+                            <div class="user-box">
+                                {{ form_row(formCreate.categorie) }}
+                            </div>
+                            <a href="#">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <button type="submit">Valider</button>
+                            </a>
+                            {{ form_end(formCreate) }}
+                        </div>
+                    </div>
+
+                <br>
+                <br>
+            <div id="wrap">
+                <div>
+                    {% if userCo != null %}
+
+                        <button class="bouttonCrea" onclick=" document.getElementById('MymodalRefus').style.display = 'block';">
+                            Creer une ressource
+                        </button>
+                    {% endif %}
+                <button class="bouttonCrea" onclick=" document.getElementById('MymodalFiltre').style.display = 'block';">
+                    Filtre
+                </button>
+            </div>
+                    <table>
+                        <thead>
+                        <tr class="tri">
+                            <th style="margin-left: 8%;">Titre</th>
+                            <th style="margin-left: 8%;">Categorie</th>
+                            <th style="margin-left: 8%;">Date de création</th>
+                            <th style="margin-left: 8%;">Resumé</th>
+
+
+                        </tr>
+                        </thead><tbody>
+                    {% for ressource in ressources %}
+
+                        <tr style="z-index: 1;"  class="tile">
+                            <td onclick='location.href="/OneRessource/{{ ressource.id }}"' style="font-size: 250%;height: 20%">{{ ressource.titre }}  →</td>
+                            <td style="font-size: 150%;height: 15%">{{ ressource.categorie }}</td>
+                            <td style="margin-bottom: 5%">{{ ressource.dateCrea|date("Y/m/d") }}</td>
+                            {% set text = ressource.resume  %}
+                            <td class="animate-text"> {{ text|raw}}{{ text|raw}}{{ text|raw}}</td>
+
+                            <td class="comm">
+                            {% for commentaire in ressource.commentaires %}
+                             <div style="font-size: 80%">{{  commentaire.utilisateur}} </div>  {{ commentaire }}
+                            {% endfor %}
+                            </td>
+                            </tr>
+                    {% endfor %}
+                            </tbody>
+                        </table>
+                </div>
+
+            {% endblock %}
+            {% block box_footer %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <script>
+
+        const compare = function(ids, asc){
+            return function(row1, row2){
+                const tdValue = function(row, ids){
+                    return row.children[ids].textContent;
+                }
+                const tri = function(v1, v2){
+                    if (v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2)){
+                        return v1 - v2;
+                    }
+                    else {
+                        return v1.toString().localeCompare(v2);
+                    }
+                    return v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2);
+                };
+                return tri(tdValue(asc ? row1 : row2, ids), tdValue(asc ? row2 : row1, ids));
+            }
+        }
+
+        const tbody = document.querySelector('tbody');
+        const thx = document.querySelectorAll('th');
+        const trxb = tbody.querySelectorAll('tr');
+
+        thx.forEach(function(th){
+            th.addEventListener('click', function(){
+                let classe = Array.from(trxb).sort(compare(Array.from(thx).indexOf(th), this.asc = !this.asc));
+                classe.forEach(function(tr){
+                    tbody.appendChild(tr)
+                });
+            })
+        });
+
+    </script>
+{% endblock %}
+
+

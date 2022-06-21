@@ -1,0 +1,11 @@
+auth_srv_sec:
+  system: SY_WEB
+  mapping_role:
+    GDICG_USR: ROLE_USER
+    GDICOM_GEST: ROLE_GEST
+    GDICOM_REDAC: ROLE_REDAC
+    GDICOM_ADMIN: ROLE_ADMIN
+  mapping_default_role: ROLE_USER
+
+  path: C:/APPLIDEV/cadnat/sec/com/bin/
+  bouchon_redirect: accueil

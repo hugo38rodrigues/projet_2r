@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Accueil{% endblock %}
+
+{% block page_content %}
+
+    <div class="row">
+    <div class="col-md-12">
+    {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+        {% block box_body %}
+            {% apply inline_css %}
+                <style>
+
+                    .grid {
+                        margin-top: 10px;
+                        display: grid;
+                        gap: 0px 0px;
+                    }
+
+                    .grid--4x4 {
+                        grid-template-columns: 1fr 1fr;
+                    }
+
+                    .align-center {
+                        align-items: center;
+                        justify-content: center;
+                        margin: 0px;
+                        height: min-content;
+                        margin-bottom: 20px;
+                    }
+
+
+                    .heading {
+                        font-family: 'Libre Baskerville', serif;
+                        font-size: 2rem;
+                        font-weight: 700;
+                        line-height: 1.2;
+                        margin-bottom: 1rem;
+                    }
+
+                    .description {
+                        font-family: 'Raleway', sans-serif;
+                        font-size: 1.12rem;
+                        line-height: 1.5;
+                        word-wrap: break-word;
+
+                        width: 45em;
+                    }
+
+                    .theme-peach {
+                        background: #5eafde;
+                        color: #1c1e22;
+                        border: medium solid #3c8dbc;
+                    }
+
+                    .theme-white {
+                        background: #fff;
+                        color: #1c1e22;
+                        border: medium solid #3c8dbc;
+                    }
+
+                    .content{
+                        position: relative;
+                        word-wrap: break-word;
+                    }
+
+
+                    .liens{
+                        position: relative;
+                        bottom: 0;
+                        left: 0;
+                        margin-bottom: 5px;
+                    }
+                    .lien{
+                        z-index: 10;
+                        text-decoration:none;
+                        margin-left: 0.7em;
+                        color: lightblue;
+                    }
+                    .lien:hover{
+                        color: deepskyblue;
+                    }
+
+
+
+                    {# test #}
+
+                    .wrap
+                    {
+                        margin:50px auto 0 auto;
+                        width:100%;
+                        display:flex;
+                        max-width:1200px;
+                        flex-wrap: wrap;
+                    }
+                    .tile
+                    {
+                        width:48%;
+                        height:380px;
+                        margin:10px;
+                        background: #3c8dbc;
+                        display:inline-block;
+                        background-size:cover;
+                        position:relative;
+                        cursor:pointer;
+                        transition: all 0.4s ease-out;
+                        box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.44);
+                        color:white;
+                        overflow: hidden;
+                        scrollbar-color: rgba(50,20,10,0.72) rgba(255,255,255,0.2);
+                        scrollbar-width: thin;
+                        scrollbar-radius: 5px;
+                    }
+                    .tile .text
+                    {
+                        width: 100%;
+                        position:absolute;
+                        padding:30px;
+                        height:calc(100% - 60px);
+                    }
+                    .tile h1
+                    {
+                        font-weight: 501;
+                        margin:0;
+                    }
+
+                    .tile p
+                    {
+                        font-weight:300;
+                        margin:20px 0 0 0;
+                        line-height: 25px;
+                    }
+
+                    .tile:hover
+                    {
+                        z-index: 10;
+                        background: #3c8dbc;
+                        overflow: auto;
+                        overflow-x: hidden;
+                        box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
+                        transform:scale(1.07);
+                    }
+
+                    .fichier
+                    {
+                        z-index: 11;
+                        position:absolute;
+                        bottom:20px;
+                        right:5px;
+                        margin: 0 auto;
+                        width:30px;
+                        height:30px;
+                        color:currentColor;
+                        display:flex;
+                        flex-direction:column;
+                        align-items:center;
+                        justify-content:space-around;
+                    }
+
+                    .fichier span
+                    {
+                        text-align: center;
+                        margin-top: 5px;
+                        background-color: white;
+                        border-radius: 10%;
+                        display:block;
+
+                    }
+
+                    .fichier span div
+                    {
+                        width: 0;
+                        height: 0;
+                    }
+
+                    .fichier span:hover div
+                    {
+                        width: min-content;
+                        height: min-content;
+                        margin-right: 5px;
+                        margin-left: 5px;
+                    }
+
+                    @media (max-width: 1000px) {
+                        .wrap {
+                            flex-direction: column;
+                            width:400px;
+                        }
+                    }
+                    .files{
+                        z-index: 10;
+                    }
+
+                </style>
+
+            {% endapply %}
+            <div class="pull-right ">
+                <button class="btn btn-success " data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-plus-square"></i> {{ 'ressource.index.btn.ajouter'|trans({},'ressource') }}</button>
+            </div>
+            <div class="wrap">
+
+                {% for article in ressources %}
+
+                    <div class="tile">
+                        <div class="text">
+                            <h1>{{ article.titre }}</h1>
+                            {% set text = article.resume  %}
+                            <p class="animate-text"> {{ text|raw}}{{ text|raw}}{{ text|raw}}</p>
+
+{#  {% if not (article.liens is empty) %}
+                                <div class="liens">
+                                    Liens :
+                                    {% for lien in article.liens %}
+                                        <a class="lien" target="_blank" href="{{ lien.lien }}">     <i class="fa fa-link" aria-hidden="true"></i>{{lien.libelle}}</a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            {% if not (article.fichiers is empty) %}
+                                <div  class="fichier linked">
+                                    {% for file in article.fichiers %}
+                                        <span>  <a class="files"  href="{{path('download_file', {'id':file.id}) }}"> <i class='fa fa-download'></i><div>{{ file.libelle }}</div></a></span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}#}
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        {% endblock %}
+        {% block box_footer %}
+
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

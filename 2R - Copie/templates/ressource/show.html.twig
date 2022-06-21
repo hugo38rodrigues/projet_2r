@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'ressource.show.pagetitle'|trans({},'ressource') }}{% endblock %}
+{% block page_subtitle %}{{ 'ressource.show.subtitle'|trans({},'ressource') }}{% endblock %}
+
+{% block page_content %}
+    {% if modalEdit is defined and modalEdit is not empty %}
+        {{ include('ressource/_modal.html.twig', { modal: modalEdit } ) }}
+    {% endif %}
+
+    {{ generate_delete_modal('ressource','delete_ressource') }}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% block box_title %}{{ 'ressource.show.boxtitle'|trans({},'ressource') }}{% endblock %}
+                {% block box_body %}
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'ressource.id'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.titre'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.titre }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.resume'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.resume }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.dateCrea'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.dateCrea ? ressource.dateCrea|date('Y-m-d') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.valide'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.valide ? 'Yes' : 'No' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.exploite'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.exploite ? 'Yes' : 'No' }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'ressource.demarre'|trans({},'ressource') }}</th>
+                                <td>{{ ressource.demarre ? 'Yes' : 'No' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right modal-footer">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-pen"></i> Editer</button>
+                        <button class="delete-entity btn btn-danger" data-id="{{ ressource.id }}" data-modal-name="ressource"><i class="fa fa-trash"></i> {{ 'ressource.show.btn.supprimer'|trans({},'ressource') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_footer %}
+                    <a href="{{ path('ressource_index') }}">{{ 'ressource.show.btn.retourliste'|trans({},'ressource') }}</a>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

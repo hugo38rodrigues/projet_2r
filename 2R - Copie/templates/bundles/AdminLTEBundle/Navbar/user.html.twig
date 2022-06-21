@@ -1,0 +1,65 @@
+{% import "@AdminLTE/Macros/default.html.twig" as macro %}
+{% if user is not defined or adminlte_direct_include is defined %}
+    {% set user = null %}
+    {% set adminlte_userdetails = adminlte_user() %}
+    {% if adminlte_userdetails is not null %}
+        {% set user = adminlte_userdetails.user %}
+        {% set links = adminlte_userdetails.links %}
+        {% set showProfileLink = adminlte_userdetails.showProfileLink %}
+        {% set showLogoutLink = adminlte_userdetails.showLogoutLink %}
+    {% endif %}
+{% endif %}
+{% if user is defined and user is not null %}
+    <li class="dropdown user user-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            {{ macro.avatar(user.avatar, user.username, 'user-image') }}
+            <span class="hidden-xs">{{ user.name }}</span>
+        </a>
+        <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header" style="height:auto">
+                {{ macro.avatar(user.avatar, user.username) }}
+                <p>
+                    {{ user.name }}
+                    <small>
+                        Role(s) : {{ user.username|raw }}
+                    </small>
+                    <small>
+                        Habilitation(s) :
+                        {% for service,value in app.user.services %}
+                            <br>{{ service }}
+                        {% endfor %}
+                    </small>
+                </p>
+            </li>
+            {% if links %}
+                <!-- Menu Body -->
+                <li class="user-body">
+                    {% for link in links %}
+                        <div class="col-xs-4 text-center">
+                            <a href="{{ path(link.path|route_alias, link.parameters) }}">{{ link.title }}</a>
+                        </div>
+                    {% endfor %}
+                </li>
+            {% endif %}
+            {% if showLogoutLink or showProfileLink %}
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    {#                    {% if showProfileLink %}#}
+                    {#                        <div class="pull-left">#}
+                    {#                            <a href="{{ path('adminlte_profile'|route_alias, {'id' : user.identifier}) }}"#}
+                    {#                               class="btn btn-default btn-flat">{{ 'Profile'|trans({}, 'AdminLTEBundle') }}</a>#}
+                    {#                        </div>#}
+                    {#                    {% endif %}#}
+                    {% if showLogoutLink %}
+                        <div class="pull-right">
+                            {#                            <a href="{{ logout_path() }}"#}
+                            <a href="#"
+                               class="btn btn-default btn-flat">{{ 'Sign out'|trans({}, 'AdminLTEBundle') }}</a>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endif %}
+        </ul>
+    </li>
+{% endif %}

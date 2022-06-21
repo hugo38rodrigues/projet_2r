@@ -1,0 +1,72 @@
+{% extends '@TwigBootstrap/layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('style.css') }}" />
+{% endblock %}
+
+{% block navbar_toggle %}
+    {% set marque = '<span style="font-size:25px;font-weight:bold">2R</span><br />Le meilleur réseau social communal' %}
+    {{ parent() }}
+{% endblock %}
+
+{% block footer %}
+    <style>
+        .footer{
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #151728;
+            color: white;
+            text-align: center;
+        }
+    </style>
+
+    <div class="footer" style="display: flex;justify-content: space-evenly;" >
+        <div>   CESI    </div>
+        <div>   2R    </div>
+        <div>   1.0.0    </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(window).on("load",function(){
+            $(".loader-wrapper").fadeOut("slow");
+        });
+
+        $(function () {
+            // Arriere plan du log AM en blanc pour le skin blue
+            // $('.skin-blue .main-header .logo').css("background-color", "#fff");
+
+            // parcours les div contenant la class modal
+            // recherche celles qui ont la class has-error
+            // recupere la div la plus proche contenant le champ aria-labelledby
+            // recupere le contenu de l'attribut id
+            // console.log($('div.modal').find('.has-error').closest('[aria-labelledby]').attr('id'));
+            var modalId = $('div.modal').find('.has-error').closest('[aria-labelledby]').attr('id');
+
+            if (modalId != undefined) {
+                // Reouverture de la modal
+                $('#' + modalId).modal('show');
+            }
+
+            // console.log($('div.modal').find('.has-error').closest('form').attr('name'));
+            var formName = $('div.modal').find('.has-error').closest('form').attr('name');
+
+            if (formName != undefined) {
+                // Suppression des erreurs lors du click sur le bouton Fermer ou X
+                $('button[data-dismiss=modal]').on('click', function () {
+                    $('form[name=' + formName + ']').find('.has-error').removeClass("has-error");
+                    $('form[name=' + formName + ']').find('.has-success').removeClass("has-success");
+                    $('form[name=' + formName + ']').find('.form-control-feedback').remove();
+                    $('form[name=' + formName + ']').find('.text-danger').remove();
+                });
+            }
+        });
+    </script>
+{% endblock %}

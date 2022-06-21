@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}{{ 'stat_recherche.show.pagetitle'|trans({},'stat_recherche') }}{% endblock %}
+{% block page_subtitle %}{{ 'stat_recherche.show.subtitle'|trans({},'stat_recherche') }}{% endblock %}
+
+{% block page_content %}
+    {% if modalEdit is defined and modalEdit is not empty %}
+        {{ include('stat_recherche/_modal.html.twig', { modal: modalEdit } ) }}
+    {% endif %}
+
+    {{ generate_delete_modal('stat_recherche','delete_stat_recherche') }}
+
+    <div class="row">
+        <div class="col-md-12">
+            {% embed '@AdminLTE/Widgets/box-widget.html.twig' %}
+                {% block box_title %}{{ 'stat_recherche.show.boxtitle'|trans({},'stat_recherche') }}{% endblock %}
+                {% block box_body %}
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'stat_recherche.id'|trans({},'stat_recherche') }}</th>
+                                <td>{{ stat_recherche.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'stat_recherche.recherche'|trans({},'stat_recherche') }}</th>
+                                <td>{{ stat_recherche.recherche }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'stat_recherche.nbrRecherche'|trans({},'stat_recherche') }}</th>
+                                <td>{{ stat_recherche.nbrRecherche }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pull-right modal-footer">
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modalEditNew"><i class="fa fa-pen"></i> Editer</button>
+                        <button class="delete-entity btn btn-danger" data-id="{{ stat_recherche.id }}" data-modal-name="stat_recherche"><i class="fa fa-trash"></i> {{ 'stat_recherche.show.btn.supprimer'|trans({},'stat_recherche') }}</button>
+                    </div>
+                {% endblock %}
+                {% block box_footer %}
+                    <a href="{{ path('stat_recherche_index') }}">{{ 'stat_recherche.show.btn.retourliste'|trans({},'stat_recherche') }}</a>
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}
